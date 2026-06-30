@@ -7,6 +7,7 @@ import {
   Shield,
   Clock,
   Star,
+  BookOpen,
 } from 'lucide-react'
 import ServiceCard from '../components/ServiceCard'
 import ControllerCard from '../components/ControllerCard'
@@ -18,6 +19,7 @@ import controllers from '../data/controllers'
 import getAllBundles from '../data/bundles'
 import getAllGames from '../data/games'
 import { SERVICE_AREA, RESPONSE_TIME } from '../data/services'
+import guides from '../data/guides'
 
 export default function Home() {
   const featuredServices = services.filter((s) => s.popular || s.category === 'Gaming').slice(0, 3)
@@ -166,6 +168,43 @@ export default function Home() {
           {featuredControllers.map((ctrl) => (
             <ControllerCard key={ctrl.id} controller={ctrl} />
           ))}
+        </div>
+      </section>
+
+      {/* Guides — SEO + conversion */}
+      <section className="border-t border-surface-600 bg-surface-800/30">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+          <div className="mb-8 flex items-end justify-between">
+            <div>
+              <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
+                Guides & Recommendations
+              </h2>
+              <p className="mt-1 text-gray-400">
+                Curated advice that links to the right gear, games, and services
+              </p>
+            </div>
+            <Link
+              to="/guides"
+              className="hidden items-center gap-1 text-sm font-semibold text-brand-400 hover:text-brand-300 sm:flex"
+            >
+              All guides <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {guides.map((guide) => (
+              <Link
+                key={guide.id}
+                to={`/guides/${guide.id}`}
+                className="group rounded-xl border border-surface-600 bg-surface-800 p-5 transition hover:border-brand-500/50"
+              >
+                <BookOpen className="h-6 w-6 text-brand-400" />
+                <h3 className="mt-3 font-display font-bold text-white group-hover:text-brand-300">
+                  {guide.title}
+                </h3>
+                <p className="mt-1 text-xs text-gray-500 line-clamp-2">{guide.subtitle}</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

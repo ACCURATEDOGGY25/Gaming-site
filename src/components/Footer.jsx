@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { Gamepad2, Download, Shield, Wrench } from 'lucide-react'
+import { Gamepad2, Download, Shield, Phone, Mail } from 'lucide-react'
+import siteConfig from '../data/siteConfig'
 
 export default function Footer() {
   return (
@@ -56,6 +57,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/guides" className="hover:text-brand-300">
+                  Guides
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-brand-300">
+                  Contact
+                </Link>
+              </li>
+              <li>
                 <Link to="/library" className="hover:text-brand-300">
                   My Library
                 </Link>
@@ -70,20 +81,24 @@ export default function Footer() {
 
           <div>
             <h4 className="mb-3 font-display text-sm font-bold uppercase tracking-wider text-brand-400">
-              Why Us
+              Contact
             </h4>
             <ul className="space-y-3 text-sm text-gray-400">
-              <li className="flex items-start gap-2">
-                <Wrench className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
-                Fixed packages — no surprise bills
+              <li>
+                <a href={`tel:${siteConfig.phoneRaw}`} className="flex items-center gap-2 hover:text-brand-300">
+                  <Phone className="h-4 w-4 shrink-0 text-brand-400" />
+                  {siteConfig.phone}
+                </a>
               </li>
-              <li className="flex items-start gap-2">
-                <Shield className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
-                30-day guarantee on all setups
+              <li>
+                <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-2 hover:text-brand-300">
+                  <Mail className="h-4 w-4 shrink-0 text-brand-400" />
+                  {siteConfig.email}
+                </a>
               </li>
-              <li className="flex items-start gap-2">
-                <Download className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
-                Instant game downloads after purchase
+              <li className="flex items-start gap-2 text-xs text-gray-500">
+                <Shield className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-400" />
+                {siteConfig.guarantees.setup}
               </li>
             </ul>
           </div>

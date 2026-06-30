@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Search, SlidersHorizontal } from 'lucide-react'
 import GameCard from '../components/GameCard'
+import UpsellBanner from '../components/UpsellBanner'
 import getAllGames from '../data/games'
 
 const categories = ['All', ...new Set(getAllGames().map((g) => g.category))]
@@ -55,6 +56,16 @@ export default function Games() {
           Curated picks to bring you here — prices scale with graphics quality. Add a setup
           service on any game page so it actually runs great on your PC.
         </p>
+      </div>
+
+      <div className="mb-8">
+        <UpsellBanner
+          title="Buying a game? Add optimization."
+          description="Most customers add a $49 performance tune so games run smooth on their PC — remote, same day."
+          price={49}
+          serviceId="svc-game-optimization"
+          cta="Add optimization service"
+        />
       </div>
 
       <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center">

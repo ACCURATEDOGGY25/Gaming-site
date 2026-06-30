@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ToastProvider } from './context/ToastContext'
 import { CartProvider } from './context/CartContext'
 import { OrderProvider } from './context/OrderContext'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import FloatingCTA from './components/FloatingCTA'
 import Home from './pages/Home'
 import Games from './pages/Games'
 import GameDetail from './pages/GameDetail'
@@ -18,15 +20,19 @@ import ServiceDetail from './pages/ServiceDetail'
 import Bundles from './pages/Bundles'
 import BundleDetail from './pages/BundleDetail'
 import Book from './pages/Book'
+import Guides from './pages/Guides'
+import GuideDetail from './pages/GuideDetail'
+import Contact from './pages/Contact'
 
 export default function App() {
   return (
     <BrowserRouter>
-      <CartProvider>
-        <OrderProvider>
-          <div className="flex min-h-screen flex-col bg-surface-900 text-gray-100">
-            <Header />
-            <main className="flex-1">
+      <ToastProvider>
+        <CartProvider>
+          <OrderProvider>
+            <div className="flex min-h-screen flex-col bg-surface-900 text-gray-100">
+              <Header />
+              <main className="flex-1 pb-20 md:pb-0">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/services" element={<Services />} />
@@ -34,6 +40,9 @@ export default function App() {
                 <Route path="/bundles" element={<Bundles />} />
                 <Route path="/bundles/:id" element={<BundleDetail />} />
                 <Route path="/book" element={<Book />} />
+                <Route path="/guides" element={<Guides />} />
+                <Route path="/guides/:id" element={<GuideDetail />} />
+                <Route path="/contact" element={<Contact />} />
                 <Route path="/games" element={<Games />} />
                 <Route path="/games/:id" element={<GameDetail />} />
                 <Route path="/controllers" element={<Controllers />} />
@@ -46,9 +55,11 @@ export default function App() {
               </Routes>
             </main>
             <Footer />
+            <FloatingCTA />
           </div>
         </OrderProvider>
       </CartProvider>
-    </BrowserRouter>
+    </ToastProvider>
+  </BrowserRouter>
   )
 }

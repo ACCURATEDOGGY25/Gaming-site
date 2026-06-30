@@ -1,4 +1,5 @@
-import { createContext, useContext, useReducer, useEffect } from 'react'
+import { createContext, useContext, useReducer, useEffect, useCallback } from 'react'
+import { useToast } from './ToastContext'
 
 const CartContext = createContext(null)
 
@@ -44,12 +45,19 @@ function cartReducer(state, action) {
 
 export function CartProvider({ children }) {
   const [items, dispatch] = useReducer(cartReducer, [], loadCart)
+  const { addToast } = useToast()
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
   }, [items])
 
-  const addItem = (item) => dispatch({ type: 'ADD', item })
+  const addItem = useCallback(
+    (item) => {
+      dispatch({ type: 'ADD', item })
+      addToast(`Added ${item.name} to cart`)
+    },
+    [addToast]
+  )
   const removeItem = (id) => dispatch({ type: 'REMOVE', id })
   const updateQuantity = (id, quantity) =>
     dispatch({ type: 'UPDATE_QTY', id, quantity })

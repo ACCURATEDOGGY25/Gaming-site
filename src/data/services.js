@@ -1,3 +1,5 @@
+import siteConfig from './siteConfig'
+
 const services = [
   {
     id: 'svc-basic-tuneup',
@@ -171,8 +173,8 @@ export function getServiceById(id) {
   return servicesWithType.find((s) => s.id === id)
 }
 
-export const SERVICE_AREA = 'Local pickup & on-site within 25 miles · Remote available worldwide'
-export const RESPONSE_TIME = 'Most bookings confirmed within 2 hours'
+export const SERVICE_AREA = siteConfig.serviceArea
+export const RESPONSE_TIME = siteConfig.responseTime
 export const RUSH_FEE = 'Same-day rush available — +50% on any service'
 
 export default servicesWithType

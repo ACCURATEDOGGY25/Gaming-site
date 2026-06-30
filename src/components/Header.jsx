@@ -1,7 +1,8 @@
 import { Link, useLocation } from 'react-router-dom'
-import { Gamepad2, ShoppingCart, Menu, X } from 'lucide-react'
+import { Gamepad2, ShoppingCart, Menu, X, Phone, Calendar } from 'lucide-react'
 import { useState } from 'react'
 import { useCart } from '../context/CartContext'
+import siteConfig from '../data/siteConfig'
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -9,7 +10,8 @@ const navLinks = [
   { to: '/controllers', label: 'Controllers' },
   { to: '/bundles', label: 'Bundles' },
   { to: '/games', label: 'Games' },
-  { to: '/book', label: 'Book' },
+  { to: '/guides', label: 'Guides' },
+  { to: '/contact', label: 'Contact' },
 ]
 
 export default function Header() {
@@ -48,7 +50,21 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <a
+            href={`tel:${siteConfig.phoneRaw}`}
+            className="hidden items-center gap-1.5 rounded-lg border border-surface-600 px-3 py-2 text-xs font-semibold text-gray-300 hover:border-brand-500 hover:text-white lg:flex"
+          >
+            <Phone className="h-3.5 w-3.5 text-brand-400" />
+            {siteConfig.phone}
+          </a>
+          <Link
+            to="/book"
+            className="hidden items-center gap-1.5 rounded-lg bg-brand-500/20 px-3 py-2 text-xs font-bold text-brand-300 hover:bg-brand-500/30 sm:flex"
+          >
+            <Calendar className="h-3.5 w-3.5" />
+            Book
+          </Link>
           <Link
             to="/cart"
             className="relative flex items-center gap-2 rounded-lg bg-surface-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-surface-600"
